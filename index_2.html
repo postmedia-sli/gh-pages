@@ -1,0 +1,64 @@
+<html> 
+<head>         
+<title>Above The Fold Time Measuremente</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script>
+          function measureCRP() {
+            var t = window.performance.timing,
+              interactive = t.domInteractive - t.domLoading,
+              dcl = t.domContentLoadedEventStart - t.domLoading,
+              complete = t.domComplete - t.domLoading;
+            var stats = document.createElement('h1');
+            stats.textContent = 'interactive: ' + interactive + ' ms, ' +
+                'dcl: ' + dcl + ' ms, complete: ' + complete + ' ms';
+            document.body.appendChild(stats);
+          }
+        </script>
+      </head>
+      <body onload="measureCRP()">
+         <h2>Fly higher  ... </h2>
+         <img src="hero_2.jpg" >
+         <h2>Play faster  ... </h2>
+         <img src="hero_1.jpg" >
+
+       <!--  Assume Above the Fold here -->
+       <script type="text/javascript">
+            window.performance.clearMarks('mark_above_the_fold');
+            window.performance.clearMeasures('mark_above_the_fold');
+            window.performance.mark('mark_above_the_fold');
+            //window.performance.measure('mark_above_the_fold', 'navigationStart', 'mark_above_the_fold');
+            window.performance.measure('mark_above_the_fold');
+
+	    //The variable aft is used in Catchpoint transaction script
+            var measures = window.performance.getEntriesByType('measure');
+            var aft = measures[0].duration;
+
+	    //These codes were used to dynamically put a comment in the HTML page
+            //var aftComments = "<!--  \n         --webAFT: " + aft + " ms \n -->";
+            //document.write(aftComments);
+
+            var stats = document.createElement('h2');
+            stats.textContent = "AFT: " + aft + " ms";
+            document.body.appendChild(stats);
+
+      </script>
+
+
+<h2>Linked Picture 2 </h2>
+<img itemprop="image" src="http://wpmedia.theprovince.com/2017/01/12681623.jpg?quality=60&#038;strip=all&#038;w=266&#038;h=199&#038;crop=1"
+                                alt=""
+                                width="266"
+                                height="199"
+                                id="img-333658"/>
+
+<h2>Linked Picture 3 </h2>
+<img itemprop="image" src="http://wpmedia.theprovince.com/2017/04/surrey-bc-march-14-2016-traffic-travels-eastbound-into.jpeg?quality=60&#038;strip=all&#038;w=481&#038;h=360&#038;crop=1" alt=""
+                                width="481"
+                                height="360"
+                                id="img-362306"/>
+  
+	<h1>Here are your Critical Path Timings!</h1>
+
+      </body>
+
+</html>

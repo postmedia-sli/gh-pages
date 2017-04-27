@@ -2,32 +2,25 @@
 Testing
  */
 function onClick() {
-  if (inputsAreEmpty()) {
-    label.textContent = 'Error: one or both inputs are empty.';
-    return;
-  }
-  updateAFT();
+  getAFT();
 }
-function inputsAreEmpty() {
-  if (getNumber1() === '' || getNumber2() === '') {
-    return true;
-  } else {
-    return false;
-  }
+
+function getAFT() {
+ var startTime = window.performance.now();
+
+  window.performance.clearMarks('mark_above_the_folder');
+  window.performance.mark('mark_above_the_folder');
+  window.performance.measure('mark_above_the_folder', 'navigationStart', 'mark_above_the_folder');
+
+  var endTime = window.performance.now();  
+  var diff = (endTime - startTime) *1;
+
+  //var measures = window.performance.getEntriesByType('measure');
+  //var aft = measures[0].duration;
+  
+  label.textContent = "Above the folder Time (ms) = " + diff;
+
 }
-function AFT() {
-  var addend1 = getNumber1();
-  var addend2 = getNumber2();
-  var sum = addend1 + addend2;
-  label.textContent = addend1 + ' + ' + addend2 + ' = ' + sum;
-}
-function getNumber1() {
-  return inputs[0].value;
-}
-function getNumber2() {
-  return inputs[1].value;
-}
-var inputs = document.querySelectorAll('input');
 var label = document.querySelector('p');
 var button = document.querySelector('button');
 button.addEventListener('click', onClick);
